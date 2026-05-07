@@ -603,7 +603,7 @@ document.addEventListener("DOMContentLoaded", () => {
         mouse.element.removeEventListener("mousewheel", mouse.mousewheel);
         mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
         
-        // Desactivar eventos táctiles para permitir el scroll en dispositivos móviles
+        // Desactivar eventos táctiles por defecto de Matter.js
         mouse.element.removeEventListener("touchstart", mouse.mousedown);
         mouse.element.removeEventListener("touchmove", mouse.mousemove);
         mouse.element.removeEventListener("touchend", mouse.mouseup);
@@ -616,6 +616,36 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
         Composite.add(world, mouseConstraint);
+
+        // Volver a agregar los eventos táctiles con lógica condicional para el scroll
+        mouse.element.addEventListener("touchstart", (e) => {
+            // Si el usuario toca un tag (chip), dejamos que Matter.js bloquee el scroll para poder arrastrar
+            if (e.target.classList.contains('physics-tag')) {
+                mouse.mousedown(e);
+            } else {
+                // Si toca un espacio vacío, anulamos preventDefault temporalmente para permitir scroll
+                const originalPreventDefault = e.preventDefault.bind(e);
+                e.preventDefault = () => {};
+                mouse.mousedown(e);
+                e.preventDefault = originalPreventDefault;
+            }
+        }, { passive: false });
+
+        mouse.element.addEventListener("touchmove", (e) => {
+            // Si estamos arrastrando un body (chip), dejamos que bloquee el scroll
+            if (mouseConstraint.body) {
+                mouse.mousemove(e);
+            } else {
+                const originalPreventDefault = e.preventDefault.bind(e);
+                e.preventDefault = () => {};
+                mouse.mousemove(e);
+                e.preventDefault = originalPreventDefault;
+            }
+        }, { passive: false });
+
+        mouse.element.addEventListener("touchend", (e) => {
+            mouse.mouseup(e);
+        }, { passive: false });
 
         // 5. ARRANCAR
         const runner = Runner.create();
