@@ -84,9 +84,21 @@
 </head>
 
 <body class="loading">
-
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+        }
+    </script>
     <!-- PRELOADER LINE ANIMATION  -->
     <div class="preloader" data-preloader>
+        <div class="preloader-content left">
+            <img src="favicon.ico" alt="Icon">
+            <div class="preloader-text">DANILO</div>
+        </div>
+        <div class="preloader-content right">
+            <img src="favicon.ico" alt="Icon">
+            <div class="preloader-text">DANILO</div>
+        </div>
         <span class="line"></span>
     </div>
     <!-- END PRELOADER LINE ANIMATION  -->
