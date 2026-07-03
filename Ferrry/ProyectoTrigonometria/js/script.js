@@ -85,29 +85,29 @@ navLinks.forEach(link => {
     });
 });
 
-// Interacción 3: Modo Avanzado (Uso de confirm, prompt, alert)
-const btnAdvanced = document.getElementById('btn-advanced');
-const resultAdvanced = document.getElementById('result-advanced');
+// Interacción 3: Desafío Trigonométrico (Uso de confirm, prompt, alert)
+const btnChallenge = document.getElementById('btn-challenge');
+const resultChallenge = document.getElementById('result-challenge');
 
-btnAdvanced.addEventListener('click', () => {
+btnChallenge.addEventListener('click', () => {
     // Uso de confirm()
-    let wantAdvanced = confirm("¿Deseas activar el modo avanzado?");
+    let wantChallenge = confirm("¿Estás listo para un pequeño desafío trigonométrico?");
     
-    if (wantAdvanced) {
+    if (wantChallenge) {
         // Uso de prompt()
-        let pass = prompt("Ingresa la clave de acceso (pista: 1234):");
+        let answer = prompt("Según la tabla, ¿cuál es el valor del Seno de 30°? (Ingresa solo el número):");
         
         // Condicional doble
-        if (pass === "1234") {
+        if (answer === "0.5" || answer === "0,5") {
             // Uso de alert()
-            alert("¡Modo avanzado activado con éxito!");
-            resultAdvanced.textContent = "Has desbloqueado las funciones avanzadas.";
+            alert("¡Correcto! Excelente trabajo.");
+            resultChallenge.textContent = "¡Has superado el desafío con éxito!";
             isInteractiveActive = true;
         } else {
-            alert("Clave incorrecta.");
-            resultAdvanced.textContent = "Acceso denegado.";
+            alert("Incorrecto. Recuerda revisar la Tabla de Ángulos Notables.");
+            resultChallenge.textContent = "Desafío fallido. ¡Sigue estudiando!";
         }
     } else {
-        resultAdvanced.textContent = "Modo avanzado cancelado.";
+        resultChallenge.textContent = "Desafío cancelado. ¡Anímate la próxima vez!";
     }
 });
