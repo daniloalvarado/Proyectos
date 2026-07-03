@@ -3,9 +3,13 @@
 // 9.1 Variables (let, const)
 // 9.2 Tipos de datos (texto, numero, booleano)
 const sectionInicio = document.getElementById('inicio'); // object
-let isInteractiveActive = false; // booleano
+let hasVisitedAngle = false; // booleano
+let hasVisitedReason = false; // booleano
+let hasVisitedChallenge = false; // booleano
 let interactionCount = 0; // numero
-const welcomeMessage = "¡Bienvenido a la sección interactiva!"; // texto
+const msgAngle = "¡Bienvenido al Evaluador de Ángulos! Aquí medimos tu precisión."; // texto
+const msgReason = "¡Bienvenido a Explicación de Razones! Descubre qué es cada función."; // texto
+const msgChallenge = "¡Bienvenido al Desafío! Es hora de poner a prueba lo que sabes."; // texto
 
 // FINAL DE SECCION DE VARIABLES Y CONFIGURACION
 
@@ -19,28 +23,21 @@ btnAngle.addEventListener('click', () => {
     // 9.3 Operadores aritméticos, relacionales y lógicos
     let angleValue = Number(inputAngle.value);
 
-    // Validación (Uso de operadores == y !=)
-    if (isNaN(angleValue) || inputAngle.value == "" || inputAngle.value != inputAngle.value) {
+    // Validación 
+    if (isNaN(angleValue) || inputAngle.value == "") {
         resultAngle.textContent = "Por favor, ingresa un número válido.";
         return;
     }
 
     // Uso del operador lógico NOT (!)
-    if (!isInteractiveActive) {
-        isInteractiveActive = true;
+    if (!hasVisitedAngle) {
+        alert(msgAngle); // Muestra el mensaje de bienvenida en pantalla
+        hasVisitedAngle = true;
     }
 
     // 10.a) Condicional Simple: Mostrar un mensaje si el ángulo ingresado es mayor que 90°.
     if (angleValue > 90) {
         alert("Atención: El ángulo ingresado es mayor que 90°.");
-    }
-
-    // Uso de operadores >= y <= para cumplir rúbrica
-    if (angleValue >= 360) {
-        console.log("Ángulo de 360 o más");
-    }
-    if (angleValue <= 0) {
-        console.log("Ángulo nulo o negativo");
     }
 
     // 10.b) Condicional Doble: Determinar si un ángulo es agudo o no.
@@ -51,10 +48,12 @@ btnAngle.addEventListener('click', () => {
         isAcuteMsg = "El ángulo NO es agudo.";
     }
 
-    // 10.c) Condicional Múltiple: Clasificar un ángulo
+    // 10.c) Condicional Múltiple: Clasificar un ángulo (Uso lógico de <= y >=)
     let classification = "";
-    if (angleValue < 0 || angleValue > 360) {
-        classification = "fuera de rango (0-360).";
+    if (angleValue <= 0) {
+        classification = "Nulo o Negativo";
+    } else if (angleValue >= 360) {
+        classification = "Completo o mayor a una vuelta";
     } else if (angleValue > 0 && angleValue < 90) {
         classification = "Agudo";
     } else if (angleValue === 90) {
@@ -90,6 +89,12 @@ const selectReason = document.getElementById('select-reason');
 const resultReason = document.getElementById('result-reason');
 
 btnReason.addEventListener('click', () => {
+    // Uso del operador lógico NOT (!)
+    if (!hasVisitedReason) {
+        alert(msgReason);
+        hasVisitedReason = true;
+    }
+
     const selected = selectReason.value;
 
     switch (selected) {
@@ -116,16 +121,22 @@ const btnChallenge = document.getElementById('btn-challenge');
 const resultChallenge = document.getElementById('result-challenge');
 
 btnChallenge.addEventListener('click', () => {
+    // Uso del operador lógico NOT (!)
+    if (!hasVisitedChallenge) {
+        alert(msgChallenge);
+        hasVisitedChallenge = true;
+    }
+
     let wantChallenge = confirm("¿Estás listo para un pequeño desafío trigonométrico?");
     if (wantChallenge) {
         let answer = prompt("Según la tabla, ¿cuál es el valor del Seno de 30°? (Ingresa solo el número):");
-        if (answer === "0.5" || answer === "0,5") {
-            alert("¡Correcto! Excelente trabajo.");
-            resultChallenge.textContent = "¡Has superado el desafío con éxito!";
-            isInteractiveActive = true;
-        } else {
+        // Uso lógico del operador distinto de (!=)
+        if (answer != "0.5" && answer != "0,5") {
             alert("Incorrecto. Recuerda revisar la Tabla de Ángulos Notables.");
             resultChallenge.textContent = "Desafío fallido. ¡Sigue estudiando!";
+        } else {
+            alert("¡Correcto! Excelente trabajo.");
+            resultChallenge.textContent = "¡Has superado el desafío con éxito!";
         }
     } else {
         resultChallenge.textContent = "Desafío cancelado. ¡Anímate la próxima vez!";
