@@ -1,4 +1,6 @@
-/* GENERAL & VARS */
+/* =========================================
+   SECCION VARIABLES Y GENERAL
+   ========================================= */
 :root {
     --black-clr: black;
     --bg-dark: #0a0a0a;
@@ -25,7 +27,11 @@ body {
     line-height: 1.6;
 }
 
-/* NAVBAR */
+/* FINAL DE SECCION VARIABLES Y GENERAL */
+
+/* =========================================
+   SECCION DE NAVEGACION (NAVBAR)
+   ========================================= */
 header.nav {
     position: fixed;
     top: 0;
@@ -58,7 +64,11 @@ header.nav {
     list-style: none;
 }
 
-/* BUTTONS */
+/* FINAL DE SECCION DE NAVEGACION (NAVBAR) */
+
+/* =========================================
+   SECCION DE BOTONES
+   ========================================= */
 .btn-primary {
     display: inline-block;
     background: linear-gradient(to right, var(--primary-light) 0%, var(--primary-grad) 100%);
@@ -79,7 +89,11 @@ header.nav {
     box-shadow: 0 5px 15px rgba(255, 125, 97, 0.4);
 }
 
-/* TYPOGRAPHY & LAYOUT */
+/* FINAL DE SECCION DE BOTONES */
+
+/* =========================================
+   SECCION DE TIPOGRAFIA Y LAYOUT
+   ========================================= */
 h1 { font-size: 2.2em; line-height: 1.2; text-transform: uppercase; margin-bottom: 15px; }
 h2 { font-size: 1.8em; margin-bottom: 15px; color: var(--primary-light); }
 h3 { font-size: 1.3em; margin: 15px 0 10px 0; color: var(--primary-grad); }
@@ -89,7 +103,11 @@ section {
     padding: 80px 20px 40px;
 }
 
-/* SHOWCASE / HERO */
+/* FINAL DE SECCION DE TIPOGRAFIA Y LAYOUT */
+
+/* =========================================
+   SECCION DE INICIO (SHOWCASE)
+   ========================================= */
 .showcase {
     display: flex;
     flex-direction: column;
@@ -108,7 +126,11 @@ section {
     border: 2px solid rgba(255,255,255,0.1);
 }
 
-/* LISTS */
+/* FINAL DE SECCION DE INICIO (SHOWCASE) */
+
+/* =========================================
+   SECCION DE LISTAS
+   ========================================= */
 .formulas-list, .steps-list {
     margin-left: 20px;
     margin-bottom: 20px;
@@ -117,7 +139,11 @@ section {
 .formulas-list li { margin-bottom: 5px; }
 .formulas-list ul { margin-left: 20px; color: #aaa; font-size: 0.9em; list-style-type: circle; }
 
-/* ASIDE & MEDIA */
+/* FINAL DE SECCION DE LISTAS */
+
+/* =========================================
+   SECCION MULTIMEDIA Y ASIDE
+   ========================================= */
 .media-aside {
     display: flex;
     flex-direction: column;
@@ -132,7 +158,11 @@ section {
     overflow: hidden;
 }
 
-/* TABLES */
+/* FINAL DE SECCION MULTIMEDIA Y ASIDE */
+
+/* =========================================
+   SECCION DE TABLAS
+   ========================================= */
 .table-responsive {
     width: 100%;
     overflow-x: auto;
@@ -158,7 +188,11 @@ th {
     color: var(--primary-light);
 }
 
-/* INTERACTIVE SECTION */
+/* FINAL DE SECCION DE TABLAS */
+
+/* =========================================
+   SECCION INTERACTIVA
+   ========================================= */
 .cards-grid {
     display: flex;
     flex-direction: column;
@@ -199,7 +233,11 @@ footer {
     color: #888;
 }
 
-/* HAMBURGER MENU */
+/* FINAL DE SECCION INTERACTIVA */
+
+/* =========================================
+   SECCION MENU HAMBURGUESA
+   ========================================= */
 .menu-btn {
     width: 25px;
     height: 19px;
@@ -257,6 +295,11 @@ footer {
     color: var(--primary-light);
 }
 
+/* FINAL DE SECCION MENU HAMBURGUESA */
+
+/* =========================================
+   SECCION DE MEDIA QUERIES (RESPONSIVE)
+   ========================================= */
 /* TABLETS (≥768px) */
 @media (min-width: 768px) {
     header.nav {

@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+    <!-- SECCION HEAD -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trigonometría para Secundaria</title>
@@ -12,9 +13,11 @@
         rel="stylesheet">
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="icon" href="img/favicon.jpg" type="image/jpeg">
+    <!-- FINAL DE SECCION HEAD -->
 </head>
 
 <body>
+    <!-- SECCION DE NAVEGACION -->
     <header class="nav">
         <div class="logo">
             <span class="brand">Trigono<span>metría.</span></span>
@@ -35,8 +38,10 @@
             <span></span>
         </div>
     </header>
+    <!-- FINAL DE SECCION DE NAVEGACION -->
 
     <main>
+        <!-- SECCION DE INICIO -->
         <section id="inicio" class="showcase">
             <div class="text">
                 <h1>Trigonometría para Secundaria</h1>
@@ -47,7 +52,9 @@
                     <img src="img/portada.jpg" alt="Portada de Trigonometría" class="hero-image">
             </div>
         </section>
+        <!-- FINAL DE SECCION DE INICIO -->
 
+        <!-- SECCION DE CONCEPTOS BASICOS -->
         <section id="conceptos" class="content-section">
             <article>
                 <h2>Conceptos Básicos</h2>
@@ -96,7 +103,9 @@
                 </div>
             </aside>
         </section>
+        <!-- FINAL DE SECCION DE CONCEPTOS BASICOS -->
 
+        <!-- SECCION DE TABLA DE ANGULOS NOTABLES -->
         <section id="razones" class="content-section">
             <article>
                 <h2>Tabla de Ángulos Notables</h2>
@@ -143,7 +152,9 @@
                 </div>
             </aside>
         </section>
+        <!-- FINAL DE SECCION DE TABLA DE ANGULOS NOTABLES -->
 
+        <!-- SECCION INTERACTIVA -->
         <section id="interaccion" class="interactive-section">
             <h2>Zona Interactiva</h2>
             <div class="cards-grid">
@@ -175,42 +186,16 @@
                 </div>
             </div> <!-- Fin de cards-grid -->
 
-            <!-- Simulador Independiente abajo de todo -->
-            <div class="simulator-container card" style="margin-top: 40px; text-align: center; padding: 40px 20px;">
-                <h2 style="margin-top: 0;">Simulador del Círculo Unitario</h2>
-                <p>Mueve el deslizador para visualizar el Seno y Coseno en tiempo real.</p>
-                
-                <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 50px; margin-top: 30px;">
-                    <!-- Lado izquierdo: Canvas -->
-                    <canvas id="unit-circle" width="300" height="300" style="background: #1e1e1e; border: 2px solid var(--primary-light); border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); max-width: 100%; height: auto;"></canvas>
-                    
-                    <!-- Lado derecho: Controles y Desafío -->
-                    <div style="display: flex; flex-direction: column; align-items: center; min-width: 250px; flex: 1; max-width: 400px;">
-                        <div style="width: 100%;">
-                            <label for="angle-slider" style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1.1em;">
-                                <span>0°</span>
-                                <span style="color: var(--primary-light);">Ángulo: <span id="angle-display">45</span>°</span>
-                                <span>360°</span>
-                            </label>
-                            <input type="range" id="angle-slider" min="0" max="360" value="45" style="width: 100%; margin: 20px 0; cursor: pointer;">
-                        </div>
-                        
-                        <div style="display: flex; justify-content: center; gap: 30px; font-weight: bold; margin-bottom: 30px; font-size: 1.3em; background: rgba(0,0,0,0.3); padding: 10px 20px; border-radius: 8px;">
-                            <span style="color: #4CAF50;">Seno: <span id="sin-display">0.71</span></span>
-                            <span style="color: #F44336;">Coseno: <span id="cos-display">0.71</span></span>
-                        </div>
 
-                        <button id="btn-canvas-challenge" class="btn-primary" style="width: 100%; padding: 15px; font-size: 1.1em;">Adivinar Seno</button>
-                        <p id="result-canvas-challenge" class="result-text" style="margin-top: 15px; font-weight: 500;"></p>
-                    </div>
-                </div>
-            </div>
         </section>
+        <!-- FINAL DE SECCION INTERACTIVA -->
     </main>
 
+    <!-- SECCION DE FOOTER -->
     <footer>
         <p>&copy; 2026 Trigonometría para Secundaria | Desarrollado por José Ferry</p>
     </footer>
+    <!-- FINAL DE SECCION DE FOOTER -->
 
     <script src="js/script.js"></script>
 </body>
