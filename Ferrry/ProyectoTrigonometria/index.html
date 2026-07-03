@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trigonometría para Secundaria</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <header class="nav">
+        <div class="logo">
+            <span class="brand">Trigono<span>metría.</span></span>
+        </div>
+        <nav class="navigation">
+            <ul class="navigation-items">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#conceptos">Conceptos</a></li>
+                <li><a href="#razones">Razones</a></li>
+                <li><a href="#interaccion">Interacción</a></li>
+                <li><a href="https://es.khanacademy.org/math/trigonometry" target="_blank" rel="noopener noreferrer">Recursos Externos</a></li>
+            </ul>
+        </nav>
+        <div class="menu-btn"></div>
+    </header>
+
+    <main>
+        <section id="inicio" class="showcase">
+            <div class="text">
+                <h1>Trigonometría para Secundaria</h1>
+                <p>Descubre el fascinante mundo de los triángulos y sus propiedades de forma interactiva.</p>
+                <a href="#conceptos" class="btn-primary">Empezar a aprender</a>
+            </div>
+            <div class="image-container">
+                <img src="img/portada.jpg" alt="Portada de Trigonometría" class="hero-image">
+            </div>
+        </section>
+
+        <section id="conceptos" class="content-section">
+            <article>
+                <h2>Conceptos Básicos</h2>
+                <p>La trigonometría es una rama de las matemáticas que estudia las relaciones entre los lados y los ángulos de los triángulos, en particular los triángulos rectángulos. Estas relaciones se expresan mediante las funciones trigonométricas.</p>
+                
+                <h3>Fórmulas Importantes</h3>
+                <ul class="formulas-list">
+                    <li>Teorema de Pitágoras: a² + b² = c²</li>
+                    <li>Seno (sin): Cateto Opuesto / Hipotenusa
+                        <ul>
+                            <li>Ejemplo: En un triángulo rectángulo con cateto opuesto 3 e hipotenusa 5, sen = 3/5 = 0.6</li>
+                        </ul>
+                    </li>
+                    <li>Coseno (cos): Cateto Adyacente / Hipotenusa
+                        <ul>
+                            <li>Ejemplo: Si el cateto adyacente es 4 y la hipotenusa 5, cos = 4/5 = 0.8</li>
+                        </ul>
+                    </li>
+                    <li>Tangente (tan): Cateto Opuesto / Cateto Adyacente
+                        <ul>
+                            <li>Ejemplo: tan = 3/4 = 0.75</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>Resolviendo un ejercicio</h3>
+                <p>Sigue esta guía paso a paso para resolver un problema típico:</p>
+                <ol class="steps-list">
+                    <li>Identifica el ángulo y los lados dados en el triángulo rectángulo.</li>
+                    <li>Determina qué lado debes calcular (hipotenusa, opuesto o adyacente).</li>
+                    <li>Elige la razón trigonométrica adecuada que relacione los lados conocidos con el desconocido.</li>
+                    <li>Despeja la incógnita y realiza el cálculo matemático.</li>
+                </ol>
+            </article>
+
+            <aside class="media-aside">
+                <a href="https://es.wikipedia.org/wiki/Trigonometr%C3%ADa" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Trigonometria_02.svg/300px-Trigonometria_02.svg.png" alt="Círculo trigonométrico" class="aside-img">
+                </a>
+                <div class="video-container">
+                    <iframe width="100%" height="250" src="https://www.youtube-nocookie.com/embed/bBBcKPEx0N4?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </aside>
+        </section>
+
+        <section id="razones" class="content-section">
+            <h2>Tabla de Ángulos Notables</h2>
+            <p>Conoce los valores exactos de las funciones trigonométricas para los ángulos más comunes.</p>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ángulo</th>
+                            <th>Seno</th>
+                            <th>Coseno</th>
+                            <th>Tangente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>30°</td>
+                            <td>0.5</td>
+                            <td>0.866</td>
+                            <td>0.577</td>
+                        </tr>
+                        <tr>
+                            <td>45°</td>
+                            <td>0.707</td>
+                            <td>0.707</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>60°</td>
+                            <td>0.866</td>
+                            <td>0.5</td>
+                            <td>1.732</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="interaccion" class="interactive-section">
+            <h2>Zona Interactiva</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>Evaluador de Ángulos</h3>
+                    <p>Ingresa un ángulo para saber qué tipo es.</p>
+                    <input type="number" id="input-angle" placeholder="Ej: 45">
+                    <button id="btn-angle" class="btn-primary">Verificar</button>
+                    <p id="result-angle" class="result-text"></p>
+                </div>
+
+                <div class="card">
+                    <h3>Explicación de Razones</h3>
+                    <p>Elige una razón trigonométrica.</p>
+                    <select id="select-reason">
+                        <option value="">Selecciona...</option>
+                        <option value="seno">Seno</option>
+                        <option value="coseno">Coseno</option>
+                        <option value="tangente">Tangente</option>
+                    </select>
+                    <button id="btn-reason" class="btn-primary">Consultar</button>
+                    <p id="result-reason" class="result-text"></p>
+                </div>
+
+                <div class="card">
+                    <h3>Modo Avanzado</h3>
+                    <p>Activa el modo de cálculo avanzado.</p>
+                    <button id="btn-advanced" class="btn-primary">Activar</button>
+                    <p id="result-advanced" class="result-text"></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Trigonometría para Secundaria | Desarrollado por José Ferry</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
