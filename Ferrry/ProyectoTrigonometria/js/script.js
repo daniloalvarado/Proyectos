@@ -107,21 +107,102 @@ navLinks.forEach(link => {
     });
 });
 
-// Interacción 3: Desafío Trigonométrico (Uso de confirm, prompt, alert)
+// 12. SIMULADOR DEL CÍRCULO UNITARIO (Canvas API)
+const canvas = document.getElementById('unit-circle');
+const ctx = canvas.getContext('2d');
+const angleSlider = document.getElementById('angle-slider');
+const angleDisplay = document.getElementById('angle-display');
+const sinDisplay = document.getElementById('sin-display');
+const cosDisplay = document.getElementById('cos-display');
+
+const centerX = canvas.width / 2;
+const centerY = canvas.height / 2;
+const radius = 120; // Radio visual
+
+let currentSinValue = 0; // Para el desafío
+
+function drawCircle(angleDegrees) {
+    // 7. Limpiar canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // 1. Dibujar plano cartesiano
+    ctx.beginPath();
+    ctx.moveTo(0, centerY);
+    ctx.lineTo(canvas.width, centerY);
+    ctx.moveTo(centerX, 0);
+    ctx.lineTo(centerX, canvas.height);
+    ctx.strokeStyle = '#555';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // 2. Dibujar círculo unitario
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // 3. y 6. Convertir grados a radianes e invertir Y para Canvas
+    const angleRadians = angleDegrees * (Math.PI / 180);
+    currentSinValue = Math.sin(angleRadians);
+    
+    // 4. Calcular coordenadas
+    const x = centerX + radius * Math.cos(angleRadians);
+    const y = centerY - radius * currentSinValue; // Restamos porque Y crece hacia abajo en Canvas
+
+    // 5. Dibujar Coseno (Línea Horizontal - Adyacente)
+    ctx.beginPath();
+    ctx.moveTo(centerX, centerY);
+    ctx.lineTo(x, centerY);
+    ctx.strokeStyle = '#F44336'; // Rojo
+    ctx.lineWidth = 3;
+    ctx.stroke();
+
+    // 5. Dibujar Seno (Línea Vertical - Opuesto)
+    ctx.beginPath();
+    ctx.moveTo(x, centerY);
+    ctx.lineTo(x, y);
+    ctx.strokeStyle = '#4CAF50'; // Verde
+    ctx.lineWidth = 3;
+    ctx.stroke();
+
+    // 5. Dibujar Radio (Hipotenusa)
+    ctx.beginPath();
+    ctx.moveTo(centerX, centerY);
+    ctx.lineTo(x, y);
+    ctx.strokeStyle = '#2196F3'; // Azul
+    ctx.lineWidth = 3;
+    ctx.stroke();
+
+    // Dibujar punto de intersección
+    ctx.beginPath();
+    ctx.arc(x, y, 6, 0, 2 * Math.PI);
+    ctx.fillStyle = '#FFEB3B';
+    ctx.fill();
+
+    // Actualizar panel de texto numérico
+    angleDisplay.textContent = angleDegrees;
+    sinDisplay.textContent = currentSinValue.toFixed(2);
+    cosDisplay.textContent = Math.cos(angleRadians).toFixed(2);
+}
+
+// Dibujo inicial
+drawCircle(angleSlider.value);
+
+// Evento de slider
+angleSlider.addEventListener('input', (e) => {
+    drawCircle(e.target.value);
+});
+
+// Interacción 3 (Requisito de Rúbrica: confirm, prompt, alert) original
 const btnChallenge = document.getElementById('btn-challenge');
 const resultChallenge = document.getElementById('result-challenge');
 
 btnChallenge.addEventListener('click', () => {
-    // Uso de confirm()
     let wantChallenge = confirm("¿Estás listo para un pequeño desafío trigonométrico?");
-    
     if (wantChallenge) {
-        // Uso de prompt()
         let answer = prompt("Según la tabla, ¿cuál es el valor del Seno de 30°? (Ingresa solo el número):");
-        
-        // Condicional doble
         if (answer === "0.5" || answer === "0,5") {
-            // Uso de alert()
             alert("¡Correcto! Excelente trabajo.");
             resultChallenge.textContent = "¡Has superado el desafío con éxito!";
             isInteractiveActive = true;
@@ -131,5 +212,30 @@ btnChallenge.addEventListener('click', () => {
         }
     } else {
         resultChallenge.textContent = "Desafío cancelado. ¡Anímate la próxima vez!";
+    }
+});
+
+// Desafío adicional integrado al Canvas
+const btnCanvasChallenge = document.getElementById('btn-canvas-challenge');
+const resultCanvasChallenge = document.getElementById('result-canvas-challenge');
+
+btnCanvasChallenge.addEventListener('click', () => {
+    let currentAngle = angleSlider.value;
+    
+    let wantChallenge = confirm(`¿Estás listo para adivinar el Seno de ${currentAngle}° mostrado en el simulador?`);
+    if (wantChallenge) {
+        let answer = prompt(`¿Cuál crees que es el valor del Seno de ${currentAngle}°? (Ingresa redondeado a 2 decimales, ej: 0.71)`);
+        let realAnswer = currentSinValue.toFixed(2);
+        let realAnswerComma = realAnswer.replace('.', ',');
+        
+        if (answer === realAnswer || answer === realAnswerComma) {
+            alert("¡Correcto! Excelente análisis del simulador.");
+            resultCanvasChallenge.textContent = `¡Acertaste! El seno de ${currentAngle}° es ${realAnswer}.`;
+        } else {
+            alert(`Incorrecto. Observa la barra verde (Seno), su valor real es ${realAnswer}.`);
+            resultCanvasChallenge.textContent = "Fallaste el cálculo. ¡Usa el simulador para aprender!";
+        }
+    } else {
+        resultCanvasChallenge.textContent = "Desafío cancelado. Sigue moviendo el deslizador.";
     }
 });

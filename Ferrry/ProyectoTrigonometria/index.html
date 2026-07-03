@@ -158,13 +158,37 @@
                     <button id="btn-reason" class="btn-primary">Consultar</button>
                     <p id="result-reason" class="result-text"></p>
                 </div>
-
                 <div class="card">
                     <h3>Desafío Trigonométrico</h3>
                     <p>Pon a prueba tus conocimientos básicos.</p>
                     <button id="btn-challenge" class="btn-primary">Iniciar Desafío</button>
                     <p id="result-challenge" class="result-text"></p>
                 </div>
+            </div> <!-- Fin de cards-grid -->
+
+            <!-- Simulador Independiente abajo de todo -->
+            <div class="simulator-container card" style="margin-top: 40px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                <h2>Simulador del Círculo Unitario</h2>
+                <p>Mueve el deslizador para visualizar el Seno y Coseno en tiempo real.</p>
+                
+                <canvas id="unit-circle" width="300" height="300" style="background: #1e1e1e; border: 2px solid var(--primary-light); border-radius: 10px; margin: 15px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.5); max-width: 100%; height: auto;"></canvas>
+                
+                <div style="width: 100%; max-width: 300px;">
+                    <label for="angle-slider" style="display: flex; justify-content: space-between; font-weight: bold;">
+                        <span>0°</span>
+                        <span>Ángulo: <span id="angle-display">45</span>°</span>
+                        <span>360°</span>
+                    </label>
+                    <input type="range" id="angle-slider" min="0" max="360" value="45" style="width: 100%; margin: 15px 0; cursor: pointer;">
+                </div>
+                
+                <div style="display: flex; gap: 20px; font-weight: bold; margin-bottom: 20px; font-size: 1.2em;">
+                    <span style="color: #4CAF50;">Seno: <span id="sin-display">0.71</span></span>
+                    <span style="color: #F44336;">Coseno: <span id="cos-display">0.71</span></span>
+                </div>
+
+                <button id="btn-canvas-challenge" class="btn-primary">Adivinar Seno del Ángulo Actual</button>
+                <p id="result-canvas-challenge" class="result-text"></p>
             </div>
         </section>
     </main>
