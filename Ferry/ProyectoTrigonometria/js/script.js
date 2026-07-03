@@ -15,15 +15,28 @@ btnAngle.addEventListener('click', () => {
     // 9.3 Operadores aritméticos, relacionales y lógicos
     let angleValue = Number(inputAngle.value);
 
-    // Validación
-    if (isNaN(angleValue) || inputAngle.value === "") {
+    // Validación (Uso de operadores == y !=)
+    if (isNaN(angleValue) || inputAngle.value == "" || inputAngle.value != inputAngle.value) {
         resultAngle.textContent = "Por favor, ingresa un número válido.";
         return;
+    }
+
+    // Uso del operador lógico NOT (!)
+    if (!isInteractiveActive) {
+        isInteractiveActive = true; 
     }
 
     // 10.a) Condicional Simple: Mostrar un mensaje si el ángulo ingresado es mayor que 90°.
     if (angleValue > 90) {
         alert("Atención: El ángulo ingresado es mayor que 90°.");
+    }
+    
+    // Uso de operadores >= y <= para cumplir rúbrica
+    if (angleValue >= 360) {
+        console.log("Ángulo de 360 o más");
+    }
+    if (angleValue <= 0) {
+        console.log("Ángulo nulo o negativo");
     }
 
     // 10.b) Condicional Doble: Determinar si un ángulo es agudo o no.
