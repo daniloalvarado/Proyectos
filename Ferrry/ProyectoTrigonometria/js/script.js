@@ -21,26 +21,48 @@ btnAngle.addEventListener('click', () => {
         return;
     }
 
-    // Condicional Simple (Si es mayor a 90)
+    // 10.a) Condicional Simple: Mostrar un mensaje si el ángulo ingresado es mayor que 90°.
     if (angleValue > 90) {
-        // Podríamos mostrar algo, pero continuaremos con la lógica múltiple
+        alert("Atención: El ángulo ingresado es mayor que 90°.");
     }
 
-    // Condicional Múltiple y Lógicos
-    if (angleValue < 0 || angleValue > 360) {
-        resultAngle.textContent = "Ingresa un ángulo entre 0 y 360 grados.";
-    } else if (angleValue > 0 && angleValue < 90) {
-        resultAngle.textContent = `El ángulo ${angleValue}° es Agudo.`;
-    } else if (angleValue === 90) {
-        resultAngle.textContent = `El ángulo ${angleValue}° es Recto.`;
-    } else if (angleValue > 90 && angleValue < 180) {
-        resultAngle.textContent = `El ángulo ${angleValue}° es Obtuso.`;
-    } else if (angleValue === 180) {
-        resultAngle.textContent = `El ángulo ${angleValue}° es Llano.`;
+    // 10.b) Condicional Doble: Determinar si un ángulo es agudo o no.
+    let isAcuteMsg = "";
+    if (angleValue > 0 && angleValue < 90) {
+        isAcuteMsg = "El ángulo ES agudo.";
     } else {
-        // Condicional Doble implícita
-        resultAngle.textContent = `El ángulo ${angleValue}° es Cóncavo o Completo.`;
+        isAcuteMsg = "El ángulo NO es agudo.";
     }
+
+    // 10.c) Condicional Múltiple: Clasificar un ángulo
+    let classification = "";
+    if (angleValue < 0 || angleValue > 360) {
+        classification = "fuera de rango (0-360).";
+    } else if (angleValue > 0 && angleValue < 90) {
+        classification = "Agudo";
+    } else if (angleValue === 90) {
+        classification = "Recto";
+    } else if (angleValue > 90 && angleValue < 180) {
+        classification = "Obtuso";
+    } else if (angleValue === 180) {
+        classification = "Llano";
+    } else {
+        classification = "Cóncavo o Completo";
+    }
+
+    // 9.3) Uso OBLIGATORIO de operadores aritméticos: +, -, *, /, %
+    let suma = angleValue + 10;
+    let resta = angleValue - 10;
+    let doble = angleValue * 2;
+    let mitad = angleValue / 2;
+    let esPar = (angleValue % 2 === 0) ? "par" : "impar";
+
+    // Mostrar los resultados en el DOM (Interacción 11)
+    resultAngle.innerHTML = `
+        <strong>Clasificación:</strong> ${classification} <br>
+        <strong>¿Es agudo?:</strong> ${isAcuteMsg} <br>
+        <span style="font-size: 0.8em; color: #aaa;">(Operadores: Mitad=${mitad}, Doble=${doble}, Suma+10=${suma}, Resta-10=${resta}, Es ${esPar})</span>
+    `;
 });
 
 // Interacción 2: Explicación de Razones (Switch)
