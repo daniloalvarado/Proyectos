@@ -27,14 +27,14 @@ btnAngle.addEventListener('click', () => {
 
     // Uso del operador lógico NOT (!)
     if (!isInteractiveActive) {
-        isInteractiveActive = true; 
+        isInteractiveActive = true;
     }
 
     // 10.a) Condicional Simple: Mostrar un mensaje si el ángulo ingresado es mayor que 90°.
     if (angleValue > 90) {
         alert("Atención: El ángulo ingresado es mayor que 90°.");
     }
-    
+
     // Uso de operadores >= y <= para cumplir rúbrica
     if (angleValue >= 360) {
         console.log("Ángulo de 360 o más");
@@ -110,26 +110,6 @@ btnReason.addEventListener('click', () => {
 
 // FINAL DE SECCION INTERACCION 2: EXPLICACION DE RAZONES
 
-// SECCION DE MENU HAMBURGUESA
-// Menú Hamburguesa
-const menuBtn = document.querySelector('.menu-btn');
-const navigation = document.querySelector('.navigation');
-const navLinks = document.querySelectorAll('.navigation-items a');
-
-menuBtn.addEventListener('click', () => {
-    menuBtn.classList.toggle('active');
-    navigation.classList.toggle('active');
-});
-
-// Cerrar el menú al hacer clic en un enlace
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        menuBtn.classList.remove('active');
-        navigation.classList.remove('active');
-    });
-});
-// FINAL DE SECCION DE MENU HAMBURGUESA
-
 // SECCION INTERACCION 3: DESAFIOS
 // Interacción 3 (Requisito de Rúbrica: confirm, prompt, alert) original
 const btnChallenge = document.getElementById('btn-challenge');
@@ -152,4 +132,22 @@ btnChallenge.addEventListener('click', () => {
     }
 });
 
+// SECCION DE MENU HAMBURGUESA
+// Menú Hamburguesa
+const menuBtn = document.querySelector('.menu-btn');
+const navigation = document.querySelector('.navigation');
+const navLinks = document.querySelectorAll('.navigation-items a');
 
+menuBtn.addEventListener('click', () => {
+    menuBtn.classList.toggle('active');
+    navigation.classList.toggle('active');
+});
+
+// Cerrar el menú al hacer clic en un enlace
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        menuBtn.classList.remove('active');
+        navigation.classList.remove('active');
+    });
+});
+// FINAL DE SECCION DE MENU HAMBURGUESA
