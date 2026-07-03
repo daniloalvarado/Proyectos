@@ -125,15 +125,6 @@ section {
     margin-top: 30px;
 }
 
-.aside-img {
-    width: 100%;
-    max-width: 200px;
-    border-radius: 10px;
-    transition: transform 0.3s;
-}
-
-.aside-img:hover { transform: scale(1.05); }
-
 .video-container {
     width: 100%;
     max-width: 100%;
