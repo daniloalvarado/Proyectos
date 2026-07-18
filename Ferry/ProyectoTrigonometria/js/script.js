@@ -66,9 +66,13 @@ cambiarColorBtn.addEventListener("click", function () {
     if (fondo_oscuro) {
         cuerpoPagina.style.backgroundColor = "white";
         cuerpoPagina.style.color = "black";
+        imagenAlgebra.src = "img/algebra.jpg"; // 16.9: Cambiar imagen según Tema
+        descripcionImagen.textContent = "Tema Claro: Operaciones de Álgebra Avanzada";
     } else {
         cuerpoPagina.style.backgroundColor = "";
         cuerpoPagina.style.color = "";
+        imagenAlgebra.src = "img/alg.png"; // 16.9: Restaurar imagen según Tema
+        descripcionImagen.textContent = "Tema Oscuro: Representación visual básica";
     }
     fondo_oscuro = !fondo_oscuro;
 });
@@ -83,15 +87,13 @@ mensajeInteractivo.addEventListener("mouseout", function () {
 
 // Mouseenter y Mouseleave para la imagen
 imagenAlgebra.addEventListener("mouseenter", function () {
-    this.src = "img/algebra.jpg"; // 16.9 Cambiar dinámicamente una imagen
-    this.style.transform = "scale(1.1)";
+    this.style.transform = "scale(1.1)"; // 13. Resaltar la imagen
     this.style.transition = "transform 0.3s";
-    descripcionImagen.textContent = "¡Explora el mundo del álgebra!";
+    this.style.boxShadow = "0 0 15px var(--primary-grad)";
 });
 imagenAlgebra.addEventListener("mouseleave", function () {
-    this.src = "img/alg.png"; // Restaurar imagen
-    this.style.transform = "scale(1)";
-    descripcionImagen.textContent = "Representación visual de operaciones matemáticas.";
+    this.style.transform = "scale(1)"; // Restaurar estilo
+    this.style.boxShadow = "none";
 });
 
 // Mousedown y Mouseup para el botón de analizar
