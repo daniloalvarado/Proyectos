@@ -29,19 +29,19 @@ const imagenAlgebra = document.getElementById("imagenAlgebra");
 const descripcionImagen = document.getElementById("descripcionImagen");
 
 // Arreglo para almacenar ejercicios (11.2)
-let arregloEjercicios = []; 
+let arregloEjercicios = [];
 let fondo_oscuro = true; // booleano
 let interacciones = 0; // numero
 
 // Evento del documento: Inicializar aplicación (13)
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     alert("¡Bienvenido a la página Aprendiendo Álgebra!");
     actualizarProgreso();
 });
 
 // Eventos de teclado (13)
 // keydown: Cambiar entre modo claro y oscuro con 'D' o 'd'
-document.addEventListener("keydown", function(evento) {
+document.addEventListener("keydown", function (evento) {
     if (evento.key.toLowerCase() === "d") {
         if (fondo_oscuro) {
             cuerpoPagina.style.backgroundColor = "white";
@@ -55,56 +55,56 @@ document.addEventListener("keydown", function(evento) {
 });
 
 // keyup: Mostrar última tecla
-textoPrueba.addEventListener("keyup", function(evento) {
+textoPrueba.addEventListener("keyup", function (evento) {
     teclaPresionada.textContent = `Tecla presionada: ${evento.key}`;
 });
 
 // click (alternativa manual al keydown para el modo oscuro/claro)
-cambiarColorBtn.addEventListener("click", function() {
+cambiarColorBtn.addEventListener("click", function () {
     if (fondo_oscuro) {
         cuerpoPagina.style.backgroundColor = "white";
         cuerpoPagina.style.color = "black";
     } else {
         cuerpoPagina.style.backgroundColor = "";
-        cuerpoPagina.style.color = "";            
+        cuerpoPagina.style.color = "";
     }
     fondo_oscuro = !fondo_oscuro;
 });
 
 // Eventos de Mouse (mouseover, mouseout)
-mensajeInteractivo.addEventListener("mouseover", function() {
+mensajeInteractivo.addEventListener("mouseover", function () {
     this.textContent = "¡Estás sobre mí!";
 });
-mensajeInteractivo.addEventListener("mouseout", function() {
+mensajeInteractivo.addEventListener("mouseout", function () {
     this.textContent = "Pasa el mouse por aquí";
 });
 
 // Mouseenter y Mouseleave para la imagen
-imagenAlgebra.addEventListener("mouseenter", function() {
+imagenAlgebra.addEventListener("mouseenter", function () {
     this.style.transform = "scale(1.1)";
     this.style.transition = "transform 0.3s";
     descripcionImagen.textContent = "¡Explora el mundo del álgebra!";
 });
-imagenAlgebra.addEventListener("mouseleave", function() {
+imagenAlgebra.addEventListener("mouseleave", function () {
     this.style.transform = "scale(1)";
     descripcionImagen.textContent = "Representación visual de operaciones matemáticas.";
 });
 
 // Mousedown y Mouseup para el botón de analizar
-btnAnalizar.addEventListener("mousedown", function() {
+btnAnalizar.addEventListener("mousedown", function () {
     this.style.backgroundColor = "#28a745"; // Verde
     this.style.color = "white";
 });
-btnAnalizar.addEventListener("mouseup", function() {
+btnAnalizar.addEventListener("mouseup", function () {
     this.style.backgroundColor = "";
     this.style.color = "";
 });
 
 // Mouseover y mouseout en productos notables (Switch - 14.d)
-producto1.addEventListener("mouseover", function() {
+producto1.addEventListener("mouseover", function () {
     mostrarExplicacion("binomio_cuadrado");
 });
-producto2.addEventListener("mouseover", function() {
+producto2.addEventListener("mouseover", function () {
     mostrarExplicacion("diferencia_cuadrados");
 });
 
@@ -136,7 +136,7 @@ function mostrarExplicacion(tipo) {
 }
 
 // Eventos de formulario (input, change, focus, blur, submit, reset)
-nombreEjercicio.addEventListener("input", function() {
+nombreEjercicio.addEventListener("input", function () {
     if (this.value.length < 3) {
         mensajeValidacion.textContent = "El nombre debe tener al menos 3 caracteres.";
         mensajeValidacion.style.color = "red";
@@ -146,11 +146,11 @@ nombreEjercicio.addEventListener("input", function() {
     }
 });
 
-nombreEjercicio.addEventListener("focus", function() {
+nombreEjercicio.addEventListener("focus", function () {
     this.style.border = "2px solid var(--primary-light)";
 });
 
-nombreEjercicio.addEventListener("blur", function() {
+nombreEjercicio.addEventListener("blur", function () {
     this.style.border = "";
     if (this.value === "") {
         mensajeValidacion.textContent = "No dejes este campo vacío.";
@@ -158,7 +158,7 @@ nombreEjercicio.addEventListener("blur", function() {
     }
 });
 
-categoriaSelector.addEventListener("change", function() {
+categoriaSelector.addEventListener("change", function () {
     let valor = this.value;
     if (valor === "basico") {
         medidorDificultad.value = 20;
@@ -171,19 +171,19 @@ categoriaSelector.addEventListener("change", function() {
     }
 });
 
-formularioEjercicio.addEventListener("reset", function(evento) {
+formularioEjercicio.addEventListener("reset", function (evento) {
     let confirmar = confirm("¿Estás seguro de que deseas limpiar el formulario?");
     if (!confirmar) {
         evento.preventDefault();
     }
 });
 
-formularioEjercicio.addEventListener("submit", function(evento) {
+formularioEjercicio.addEventListener("submit", function (evento) {
     evento.preventDefault(); // Evitar recarga
-    
+
     let nombre = nombreEjercicio.value;
     let grado = Number(expresionValor.value);
-    
+
     // Validar tipo de expresión usando radio buttons
     let tipoRadio = document.querySelector('input[name="tipoExp"]:checked');
     let tipo = tipoRadio ? tipoRadio.value : "Desconocido";
@@ -195,23 +195,23 @@ formularioEjercicio.addEventListener("submit", function(evento) {
         tipo: tipo
     };
     arregloEjercicios.push(nuevoEjercicio);
-    
+
     // Crear elemento en lista dinámicamente (12)
     let elementoLista = document.createElement("li");
     elementoLista.textContent = `${nombre} (Grado: ${grado}, Tipo: ${tipo})`;
     elementoLista.setAttribute("data-grado", grado);
     elementoLista.style.cursor = "pointer";
     elementoLista.style.marginBottom = "5px";
-    
+
     // Evento dblclick para eliminar
-    elementoLista.addEventListener("dblclick", function() {
+    elementoLista.addEventListener("dblclick", function () {
         this.remove(); // Eliminación del DOM
         mensajeForm.textContent = "Ejercicio eliminado de la lista.";
         actualizarProgreso();
     });
 
     listaEjercicios.appendChild(elementoLista);
-    
+
     mensajeForm.textContent = `¡Ejercicio '${nombre}' agregado correctamente!`;
     actualizarProgreso();
     formularioEjercicio.reset(); // Limpia campos si el usuario aceptó en el reset o lo llamamos manualmente
@@ -224,7 +224,7 @@ formularioEjercicio.addEventListener("submit", function(evento) {
 });
 
 // Condicionales (Simple, Doble, Multiple) y Bucles (for, while, forEach)
-btnAnalizar.addEventListener("click", function() {
+btnAnalizar.addEventListener("click", function () {
     if (arregloEjercicios.length === 0) {
         cajaResultado.innerHTML = "No hay ejercicios para analizar.";
         return;
@@ -235,12 +235,12 @@ btnAnalizar.addEventListener("click", function() {
     for (let i = 0; i < arregloEjercicios.length; i++) {
         let ej = arregloEjercicios[i];
         let grado = ej.grado;
-        
+
         // 14.a Condicional Simple
         if (grado > 2) {
             console.log(`Mensaje en consola: El grado de ${ej.nombre} es mayor que 2.`);
         }
-        
+
         // 14.b Condicional Doble
         let esMonomio = "";
         if (ej.tipo === "monomio") {
@@ -260,7 +260,7 @@ btnAnalizar.addEventListener("click", function() {
         } else {
             clasificacion = "Expresión constante";
         }
-        
+
         resultadoHTML += `<li style="margin-bottom: 10px;">
             <strong>${ej.nombre}</strong><br>
             Clasificación estimada por grado: ${clasificacion}.<br>
@@ -273,8 +273,8 @@ btnAnalizar.addEventListener("click", function() {
     // Bucle while (15.b)
     let contador = 0;
     let encontrado = false;
-    while(contador < arregloEjercicios.length && !encontrado) {
-        if(arregloEjercicios[contador].grado > 5) {
+    while (contador < arregloEjercicios.length && !encontrado) {
+        if (arregloEjercicios[contador].grado > 5) {
             alert(`¡Alerta! Se encontró un polinomio con grado muy alto (>5): ${arregloEjercicios[contador].nombre}`);
             encontrado = true;
         }
@@ -283,7 +283,7 @@ btnAnalizar.addEventListener("click", function() {
 
     // Método forEach (15.c) para modificar estilos de elementos del DOM
     let todosLosLi = document.querySelectorAll("#listaEjercicios li");
-    todosLosLi.forEach(function(nodo) {
+    todosLosLi.forEach(function (nodo) {
         nodo.classList.toggle("resaltado"); // Cambia estilo visual
     });
 });
