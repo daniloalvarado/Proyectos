@@ -227,8 +227,8 @@ th {
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-/* Formularios adaptados */
-.card input[type="text"], .card input[type="number"], .card select {
+/* Formularios adaptados (Base Oscura) */
+.card input[type="text"], .card input[type="number"], .card select, .input-dark {
     width: 100%;
     padding: 10px;
     margin-bottom: 5px;
@@ -239,9 +239,42 @@ th {
     font-family: inherit;
 }
 
-.card input[type="text"]:focus, .card input[type="number"]:focus, .card select:focus {
+.caja-dark {
+    background: #1a1a1a;
+}
+
+.card input[type="text"]:focus, .card input[type="number"]:focus, .card select:focus, .input-dark:focus {
     outline: none;
     border-color: var(--primary-light);
+}
+
+/* =========================================
+   TEMA CLARO (LIGHT MODE) OVERRIDES
+   ========================================= */
+body.tema-claro {
+    background-color: white;
+    color: black;
+}
+
+body.tema-claro .card {
+    background: #f9f9f9;
+    border-color: #ddd;
+    color: black;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+body.tema-claro .card input[type="text"], 
+body.tema-claro .card input[type="number"], 
+body.tema-claro .card select, 
+body.tema-claro .input-dark {
+    background: #ffffff;
+    color: #000000;
+    border: 1px solid #ccc;
+}
+
+body.tema-claro .caja-dark {
+    background: #f1f1f1;
+    border-color: #ddd;
 }
 
 .result-text {

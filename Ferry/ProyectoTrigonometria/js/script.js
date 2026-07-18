@@ -45,12 +45,14 @@ document.addEventListener("DOMContentLoaded", function () {
 // keydown: Cambiar entre modo claro y oscuro con 'D' o 'd'
 document.addEventListener("keydown", function (evento) {
     if (evento.key.toLowerCase() === "d") {
-        if (fondo_oscuro) {
-            cuerpoPagina.style.backgroundColor = "white";
-            cuerpoPagina.style.color = "black";
+        document.body.classList.toggle("tema-claro");
+        
+        if (!fondo_oscuro) {
+            imagenAlgebra.src = "img/algebra.jpg";
+            descripcionImagen.textContent = "Tema Claro: Operaciones de Álgebra Avanzada";
         } else {
-            cuerpoPagina.style.backgroundColor = ""; // Regresa al css original (dark)
-            cuerpoPagina.style.color = "";
+            imagenAlgebra.src = "img/alg.png";
+            descripcionImagen.textContent = "Tema Oscuro: Representación visual básica";
         }
         fondo_oscuro = !fondo_oscuro;
     }
@@ -63,14 +65,12 @@ textoPrueba.addEventListener("keyup", function (evento) {
 
 // click (alternativa manual al keydown para el modo oscuro/claro)
 cambiarColorBtn.addEventListener("click", function () {
-    if (fondo_oscuro) {
-        cuerpoPagina.style.backgroundColor = "white";
-        cuerpoPagina.style.color = "black";
+    document.body.classList.toggle("tema-claro");
+    
+    if (!fondo_oscuro) {
         imagenAlgebra.src = "img/algebra.jpg"; // 16.9: Cambiar imagen según Tema
         descripcionImagen.textContent = "Tema Claro: Operaciones de Álgebra Avanzada";
     } else {
-        cuerpoPagina.style.backgroundColor = "";
-        cuerpoPagina.style.color = "";
         imagenAlgebra.src = "img/alg.png"; // 16.9: Restaurar imagen según Tema
         descripcionImagen.textContent = "Tema Oscuro: Representación visual básica";
     }
