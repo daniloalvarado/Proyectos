@@ -23,6 +23,8 @@ const cambiarColorBtn = document.getElementById("cambiarColor");
 
 const producto1 = document.getElementById("producto1");
 const producto2 = document.getElementById("producto2");
+const producto3 = document.getElementById("producto3");
+const producto4 = document.getElementById("producto4");
 const explicacionProducto = document.getElementById("explicacionProducto");
 
 const imagenAlgebra = document.getElementById("imagenAlgebra");
@@ -81,11 +83,13 @@ mensajeInteractivo.addEventListener("mouseout", function () {
 
 // Mouseenter y Mouseleave para la imagen
 imagenAlgebra.addEventListener("mouseenter", function () {
+    this.src = "img/alg.png"; // 16.9 Cambiar dinámicamente una imagen
     this.style.transform = "scale(1.1)";
     this.style.transition = "transform 0.3s";
     descripcionImagen.textContent = "¡Explora el mundo del álgebra!";
 });
 imagenAlgebra.addEventListener("mouseleave", function () {
+    this.src = "img/algebra.jpg"; // Restaurar imagen
     this.style.transform = "scale(1)";
     descripcionImagen.textContent = "Representación visual de operaciones matemáticas.";
 });
@@ -107,9 +111,17 @@ producto1.addEventListener("mouseover", function () {
 producto2.addEventListener("mouseover", function () {
     mostrarExplicacion("diferencia_cuadrados");
 });
+producto3.addEventListener("mouseover", function () {
+    mostrarExplicacion("binomios_conjugados");
+});
+producto4.addEventListener("mouseover", function () {
+    mostrarExplicacion("cubo_binomio");
+});
 
 producto1.addEventListener("mouseout", limpiarExplicacion);
 producto2.addEventListener("mouseout", limpiarExplicacion);
+producto3.addEventListener("mouseout", limpiarExplicacion);
+producto4.addEventListener("mouseout", limpiarExplicacion);
 
 function limpiarExplicacion() {
     explicacionProducto.textContent = "Selecciona un producto notable pasando el mouse sobre la lista superior.";
@@ -140,9 +152,13 @@ nombreEjercicio.addEventListener("input", function () {
     if (this.value.length < 3) {
         mensajeValidacion.textContent = "El nombre debe tener al menos 3 caracteres.";
         mensajeValidacion.style.color = "red";
+        mensajeValidacion.classList.add("error");
+        mensajeValidacion.classList.remove("exito");
     } else {
         mensajeValidacion.textContent = "Nombre válido.";
         mensajeValidacion.style.color = "#28a745";
+        mensajeValidacion.classList.add("exito");
+        mensajeValidacion.classList.remove("error");
     }
 });
 
@@ -205,6 +221,9 @@ formularioEjercicio.addEventListener("submit", function (evento) {
 
     // Evento dblclick para eliminar
     elementoLista.addEventListener("dblclick", function () {
+        let gradoLeido = this.getAttribute("data-grado"); // 12. Manipulación de atributos
+        console.log("Eliminando ejercicio con grado: " + gradoLeido);
+        
         this.remove(); // Eliminación del DOM
         mensajeForm.textContent = "Ejercicio eliminado de la lista.";
         actualizarProgreso();
