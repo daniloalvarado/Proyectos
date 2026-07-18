@@ -1,149 +1,300 @@
-// SECCION DE VARIABLES Y CONFIGURACION
-// 9. Programación con JavaScript
-// 9.1 Variables (let, const)
-// 9.2 Tipos de datos (texto, numero, booleano)
-const sectionInicio = document.getElementById('inicio'); // object
-let hasVisitedAngle = false; // booleano
-let hasVisitedReason = false; // booleano
-let hasVisitedChallenge = false; // booleano
-let interactionCount = 0; // numero
-const msgAngle = "¡Bienvenido al Evaluador de Ángulos! Aquí medimos tu precisión."; // texto
-const msgReason = "¡Bienvenido a Explicación de Razones! Descubre qué es cada función."; // texto
-const msgChallenge = "¡Bienvenido al Desafío! Es hora de poner a prueba lo que sabes."; // texto
+// 11. Programación con JavaScript (Variables en español)
+// 11.1 Variables let, const
+// 11.2 Tipos de datos (texto, numero, booleano, array)
+const cuerpoPagina = document.getElementById("cuerpoPagina");
+const formularioEjercicio = document.getElementById("formularioEjercicio");
+const nombreEjercicio = document.getElementById("nombreEjercicio");
+const mensajeValidacion = document.getElementById("mensajeValidacion");
+const expresionValor = document.getElementById("expresionValor");
+const categoriaSelector = document.getElementById("categoriaSelector");
+const medidorDificultad = document.getElementById("medidorDificultad");
+const btnAgregar = document.getElementById("btnAgregar");
+const btnLimpiar = document.getElementById("btnLimpiar");
+const listaEjercicios = document.getElementById("listaEjercicios");
+const progresoEstudiante = document.getElementById("progresoEstudiante");
+const mensajeForm = document.getElementById("mensajeForm");
 
-// FINAL DE SECCION DE VARIABLES Y CONFIGURACION
+const textoPrueba = document.getElementById("textoPrueba");
+const teclaPresionada = document.getElementById("teclaPresionada");
+const mensajeInteractivo = document.getElementById("mensajeInteractivo");
+const cajaResultado = document.getElementById("cajaResultado");
+const btnAnalizar = document.getElementById("btnAnalizar");
+const cambiarColorBtn = document.getElementById("cambiarColor");
 
-// SECCION INTERACCION 1: EVALUADOR DE ANGULOS
-// Interacción 1: Evaluador de Ángulos (Condicionales simple, doble y múltiple)
-const btnAngle = document.getElementById('btn-angle');
-const inputAngle = document.getElementById('input-angle');
-const resultAngle = document.getElementById('result-angle');
+const producto1 = document.getElementById("producto1");
+const producto2 = document.getElementById("producto2");
+const explicacionProducto = document.getElementById("explicacionProducto");
 
-btnAngle.addEventListener('click', () => {
-    // 9.3 Operadores aritméticos, relacionales y lógicos
-    let angleValue = Number(inputAngle.value);
+const imagenAlgebra = document.getElementById("imagenAlgebra");
+const descripcionImagen = document.getElementById("descripcionImagen");
 
-    // Validación 
-    if (isNaN(angleValue) || inputAngle.value == "") {
-        resultAngle.textContent = "Por favor, ingresa un número válido.";
+// Arreglo para almacenar ejercicios (11.2)
+let arregloEjercicios = []; 
+let fondo_oscuro = true; // booleano
+let interacciones = 0; // numero
+
+// Evento del documento: Inicializar aplicación (13)
+document.addEventListener("DOMContentLoaded", function() {
+    alert("¡Bienvenido a la página Aprendiendo Álgebra!");
+    actualizarProgreso();
+});
+
+// Eventos de teclado (13)
+// keydown: Cambiar entre modo claro y oscuro con 'D' o 'd'
+document.addEventListener("keydown", function(evento) {
+    if (evento.key.toLowerCase() === "d") {
+        if (fondo_oscuro) {
+            cuerpoPagina.style.backgroundColor = "white";
+            cuerpoPagina.style.color = "black";
+        } else {
+            cuerpoPagina.style.backgroundColor = ""; // Regresa al css original (dark)
+            cuerpoPagina.style.color = "";
+        }
+        fondo_oscuro = !fondo_oscuro;
+    }
+});
+
+// keyup: Mostrar última tecla
+textoPrueba.addEventListener("keyup", function(evento) {
+    teclaPresionada.textContent = `Tecla presionada: ${evento.key}`;
+});
+
+// click (alternativa manual al keydown para el modo oscuro/claro)
+cambiarColorBtn.addEventListener("click", function() {
+    if (fondo_oscuro) {
+        cuerpoPagina.style.backgroundColor = "white";
+        cuerpoPagina.style.color = "black";
+    } else {
+        cuerpoPagina.style.backgroundColor = "";
+        cuerpoPagina.style.color = "";            
+    }
+    fondo_oscuro = !fondo_oscuro;
+});
+
+// Eventos de Mouse (mouseover, mouseout)
+mensajeInteractivo.addEventListener("mouseover", function() {
+    this.textContent = "¡Estás sobre mí!";
+});
+mensajeInteractivo.addEventListener("mouseout", function() {
+    this.textContent = "Pasa el mouse por aquí";
+});
+
+// Mouseenter y Mouseleave para la imagen
+imagenAlgebra.addEventListener("mouseenter", function() {
+    this.style.transform = "scale(1.1)";
+    this.style.transition = "transform 0.3s";
+    descripcionImagen.textContent = "¡Explora el mundo del álgebra!";
+});
+imagenAlgebra.addEventListener("mouseleave", function() {
+    this.style.transform = "scale(1)";
+    descripcionImagen.textContent = "Representación visual de operaciones matemáticas.";
+});
+
+// Mousedown y Mouseup para el botón de analizar
+btnAnalizar.addEventListener("mousedown", function() {
+    this.style.backgroundColor = "#28a745"; // Verde
+    this.style.color = "white";
+});
+btnAnalizar.addEventListener("mouseup", function() {
+    this.style.backgroundColor = "";
+    this.style.color = "";
+});
+
+// Mouseover y mouseout en productos notables (Switch - 14.d)
+producto1.addEventListener("mouseover", function() {
+    mostrarExplicacion("binomio_cuadrado");
+});
+producto2.addEventListener("mouseover", function() {
+    mostrarExplicacion("diferencia_cuadrados");
+});
+
+producto1.addEventListener("mouseout", limpiarExplicacion);
+producto2.addEventListener("mouseout", limpiarExplicacion);
+
+function limpiarExplicacion() {
+    explicacionProducto.textContent = "Selecciona un producto notable pasando el mouse sobre la lista superior.";
+}
+
+function mostrarExplicacion(tipo) {
+    switch (tipo) {
+        case "binomio_cuadrado":
+            explicacionProducto.innerHTML = "<strong>Binomio al cuadrado:</strong> (x + y)² = x² + 2xy + y²";
+            break;
+        case "diferencia_cuadrados":
+            explicacionProducto.innerHTML = "<strong>Diferencia de cuadrados:</strong> (x - y)(x + y) = x² - y²";
+            break;
+        case "binomios_conjugados":
+            explicacionProducto.innerHTML = "<strong>Binomios conjugados:</strong> Son aquellos que difieren solo en el signo.";
+            break;
+        case "cubo_binomio":
+            explicacionProducto.innerHTML = "<strong>Cubo de un binomio:</strong> (x + y)³ = x³ + 3x²y + 3xy² + y³";
+            break;
+        default:
+            explicacionProducto.textContent = "No hay explicación disponible.";
+            break;
+    }
+}
+
+// Eventos de formulario (input, change, focus, blur, submit, reset)
+nombreEjercicio.addEventListener("input", function() {
+    if (this.value.length < 3) {
+        mensajeValidacion.textContent = "El nombre debe tener al menos 3 caracteres.";
+        mensajeValidacion.style.color = "red";
+    } else {
+        mensajeValidacion.textContent = "Nombre válido.";
+        mensajeValidacion.style.color = "#28a745";
+    }
+});
+
+nombreEjercicio.addEventListener("focus", function() {
+    this.style.border = "2px solid var(--primary-light)";
+});
+
+nombreEjercicio.addEventListener("blur", function() {
+    this.style.border = "";
+    if (this.value === "") {
+        mensajeValidacion.textContent = "No dejes este campo vacío.";
+        mensajeValidacion.style.color = "red";
+    }
+});
+
+categoriaSelector.addEventListener("change", function() {
+    let valor = this.value;
+    if (valor === "basico") {
+        medidorDificultad.value = 20;
+    } else if (valor === "intermedio") {
+        medidorDificultad.value = 50;
+    } else if (valor === "avanzado") {
+        medidorDificultad.value = 90;
+    } else {
+        medidorDificultad.value = 0;
+    }
+});
+
+formularioEjercicio.addEventListener("reset", function(evento) {
+    let confirmar = confirm("¿Estás seguro de que deseas limpiar el formulario?");
+    if (!confirmar) {
+        evento.preventDefault();
+    }
+});
+
+formularioEjercicio.addEventListener("submit", function(evento) {
+    evento.preventDefault(); // Evitar recarga
+    
+    let nombre = nombreEjercicio.value;
+    let grado = Number(expresionValor.value);
+    
+    // Validar tipo de expresión usando radio buttons
+    let tipoRadio = document.querySelector('input[name="tipoExp"]:checked');
+    let tipo = tipoRadio ? tipoRadio.value : "Desconocido";
+
+    // Registrar en array
+    let nuevoEjercicio = {
+        nombre: nombre,
+        grado: grado,
+        tipo: tipo
+    };
+    arregloEjercicios.push(nuevoEjercicio);
+    
+    // Crear elemento en lista dinámicamente (12)
+    let elementoLista = document.createElement("li");
+    elementoLista.textContent = `${nombre} (Grado: ${grado}, Tipo: ${tipo})`;
+    elementoLista.setAttribute("data-grado", grado);
+    elementoLista.style.cursor = "pointer";
+    elementoLista.style.marginBottom = "5px";
+    
+    // Evento dblclick para eliminar
+    elementoLista.addEventListener("dblclick", function() {
+        this.remove(); // Eliminación del DOM
+        mensajeForm.textContent = "Ejercicio eliminado de la lista.";
+        actualizarProgreso();
+    });
+
+    listaEjercicios.appendChild(elementoLista);
+    
+    mensajeForm.textContent = `¡Ejercicio '${nombre}' agregado correctamente!`;
+    actualizarProgreso();
+    formularioEjercicio.reset(); // Limpia campos si el usuario aceptó en el reset o lo llamamos manualmente
+    // Forzamos limpieza si se aceptó el submit:
+    nombreEjercicio.value = "";
+    expresionValor.value = "";
+    categoriaSelector.value = "";
+    medidorDificultad.value = 0;
+    mensajeValidacion.textContent = "";
+});
+
+// Condicionales (Simple, Doble, Multiple) y Bucles (for, while, forEach)
+btnAnalizar.addEventListener("click", function() {
+    if (arregloEjercicios.length === 0) {
+        cajaResultado.innerHTML = "No hay ejercicios para analizar.";
         return;
     }
 
-    // Uso del operador lógico NOT (!)
-    if (!hasVisitedAngle) {
-        alert(msgAngle); // Muestra el mensaje de bienvenida en pantalla
-        hasVisitedAngle = true;
-    }
-
-    // 10.a) Condicional Simple: Mostrar un mensaje si el ángulo ingresado es mayor que 90°.
-    if (angleValue > 90) {
-        alert("Atención: El ángulo ingresado es mayor que 90°.");
-    }
-
-    // 10.b) Condicional Doble: Determinar si un ángulo es agudo o no.
-    let isAcuteMsg = "";
-    if (angleValue > 0 && angleValue < 90) {
-        isAcuteMsg = "El ángulo ES agudo.";
-    } else {
-        isAcuteMsg = "El ángulo NO es agudo.";
-    }
-
-    // 10.c) Condicional Múltiple: Clasificar un ángulo (Uso lógico de <= y >=)
-    let classification = "";
-    if (angleValue <= 0) {
-        classification = "Nulo o Negativo";
-    } else if (angleValue >= 360) {
-        classification = "Completo o mayor a una vuelta";
-    } else if (angleValue > 0 && angleValue < 90) {
-        classification = "Agudo";
-    } else if (angleValue === 90) {
-        classification = "Recto";
-    } else if (angleValue > 90 && angleValue < 180) {
-        classification = "Obtuso";
-    } else if (angleValue === 180) {
-        classification = "Llano";
-    } else {
-        classification = "Cóncavo o Completo";
-    }
-
-    // 9.3) Uso OBLIGATORIO de operadores aritméticos: +, -, *, /, %
-    let suma = angleValue + 10;
-    let resta = angleValue - 10;
-    let doble = angleValue * 2;
-    let mitad = angleValue / 2;
-    let esPar = (angleValue % 2 === 0) ? "par" : "impar";
-
-    // Mostrar los resultados en el DOM (Interacción 11)
-    resultAngle.innerHTML = `
-        <strong>Clasificación:</strong> ${classification} <br>
-        <strong>¿Es agudo?:</strong> ${isAcuteMsg} <br>
-        <span style="font-size: 0.8em; color: #aaa;">(Operadores: Mitad=${mitad}, Doble=${doble}, Suma+10=${suma}, Resta-10=${resta}, Es ${esPar})</span>
-    `;
-});
-// FINAL DE SECCION INTERACCION 1: EVALUADOR DE ANGULOS
-
-// SECCION INTERACCION 2: EXPLICACION DE RAZONES
-// Interacción 2: Explicación de Razones (Switch)
-const btnReason = document.getElementById('btn-reason');
-const selectReason = document.getElementById('select-reason');
-const resultReason = document.getElementById('result-reason');
-
-btnReason.addEventListener('click', () => {
-    // Uso del operador lógico NOT (!)
-    if (!hasVisitedReason) {
-        alert(msgReason);
-        hasVisitedReason = true;
-    }
-
-    const selected = selectReason.value;
-
-    switch (selected) {
-        case 'seno':
-            resultReason.innerHTML = "<strong>Seno:</strong> Es la razón entre el cateto opuesto y la hipotenusa.";
-            break;
-        case 'coseno':
-            resultReason.innerHTML = "<strong>Coseno:</strong> Es la razón entre el cateto adyacente y la hipotenusa.";
-            break;
-        case 'tangente':
-            resultReason.innerHTML = "<strong>Tangente:</strong> Es la razón entre el cateto opuesto y el cateto adyacente.";
-            break;
-        default:
-            resultReason.innerHTML = "Por favor, selecciona una razón válida.";
-            break;
-    }
-});
-
-// FINAL DE SECCION INTERACCION 2: EXPLICACION DE RAZONES
-
-// SECCION INTERACCION 3: DESAFIOS
-// Interacción 3 (Requisito de Rúbrica: confirm, prompt, alert) original
-const btnChallenge = document.getElementById('btn-challenge');
-const resultChallenge = document.getElementById('result-challenge');
-
-btnChallenge.addEventListener('click', () => {
-    // Uso del operador lógico NOT (!)
-    if (!hasVisitedChallenge) {
-        alert(msgChallenge);
-        hasVisitedChallenge = true;
-    }
-
-    let wantChallenge = confirm("¿Estás listo para un pequeño desafío trigonométrico?");
-    if (wantChallenge) {
-        let answer = prompt("Según la tabla, ¿cuál es el valor del Seno de 30°? (Ingresa solo el número):");
-        // Uso lógico del operador distinto de (!=)
-        if (answer != "0.5" && answer != "0,5") {
-            alert("Incorrecto. Recuerda revisar la Tabla de Ángulos Notables.");
-            resultChallenge.textContent = "Desafío fallido. ¡Sigue estudiando!";
-        } else {
-            alert("¡Correcto! Excelente trabajo.");
-            resultChallenge.textContent = "¡Has superado el desafío con éxito!";
+    // Bucle for (15.a)
+    let resultadoHTML = "<ul style='padding-left: 20px;'>";
+    for (let i = 0; i < arregloEjercicios.length; i++) {
+        let ej = arregloEjercicios[i];
+        let grado = ej.grado;
+        
+        // 14.a Condicional Simple
+        if (grado > 2) {
+            console.log(`Mensaje en consola: El grado de ${ej.nombre} es mayor que 2.`);
         }
-    } else {
-        resultChallenge.textContent = "Desafío cancelado. ¡Anímate la próxima vez!";
+        
+        // 14.b Condicional Doble
+        let esMonomio = "";
+        if (ej.tipo === "monomio") {
+            esMonomio = "Sí corresponde a un monomio.";
+        } else {
+            esMonomio = "No corresponde a un monomio.";
+        }
+
+        // 14.c Condicional Múltiple (if - else if)
+        let clasificacion = "";
+        if (grado === 1) {
+            clasificacion = "Binomio de grado 1 o Monomio";
+        } else if (grado === 2) {
+            clasificacion = "Trinomio o Binomio de grado 2";
+        } else if (grado >= 3) {
+            clasificacion = "Polinomio";
+        } else {
+            clasificacion = "Expresión constante";
+        }
+        
+        resultadoHTML += `<li style="margin-bottom: 10px;">
+            <strong>${ej.nombre}</strong><br>
+            Clasificación estimada por grado: ${clasificacion}.<br>
+            Verificación: ${esMonomio}
+        </li>`;
     }
+    resultadoHTML += "</ul>";
+    cajaResultado.innerHTML = resultadoHTML;
+
+    // Bucle while (15.b)
+    let contador = 0;
+    let encontrado = false;
+    while(contador < arregloEjercicios.length && !encontrado) {
+        if(arregloEjercicios[contador].grado > 5) {
+            alert(`¡Alerta! Se encontró un polinomio con grado muy alto (>5): ${arregloEjercicios[contador].nombre}`);
+            encontrado = true;
+        }
+        contador++;
+    }
+
+    // Método forEach (15.c) para modificar estilos de elementos del DOM
+    let todosLosLi = document.querySelectorAll("#listaEjercicios li");
+    todosLosLi.forEach(function(nodo) {
+        nodo.classList.toggle("resaltado"); // Cambia estilo visual
+    });
 });
 
-// SECCION DE MENU HAMBURGUESA
+// Progreso
+function actualizarProgreso() {
+    interacciones += 15;
+    if (interacciones > 100) interacciones = 100;
+    progresoEstudiante.value = interacciones;
+}
+
 // Menú Hamburguesa
 const menuBtn = document.querySelector('.menu-btn');
 const navigation = document.querySelector('.navigation');
@@ -161,4 +312,3 @@ navLinks.forEach(link => {
         navigation.classList.remove('active');
     });
 });
-// FINAL DE SECCION DE MENU HAMBURGUESA

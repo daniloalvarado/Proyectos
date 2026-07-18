@@ -25,9 +25,8 @@ body {
     color: var(--white-clr);
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
-
-/* FINAL DE SECCION VARIABLES Y GENERAL */
 
 /* =========================================
    SECCION DE NAVEGACION (NAVBAR)
@@ -38,6 +37,7 @@ header.nav {
     left: 0;
     width: 100%;
     display: flex;
+    flex-direction: column; /* Mobile First: Menu vertical */
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
@@ -64,8 +64,6 @@ header.nav {
     list-style: none;
 }
 
-/* FINAL DE SECCION DE NAVEGACION (NAVBAR) */
-
 /* =========================================
    SECCION DE BOTONES
    ========================================= */
@@ -81,15 +79,13 @@ header.nav {
     text-decoration: none;
     cursor: pointer;
     border-radius: 5px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.1s;
 }
 
 .btn-primary:hover {
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(255, 125, 97, 0.4);
 }
-
-/* FINAL DE SECCION DE BOTONES */
 
 /* =========================================
    SECCION DE TIPOGRAFIA Y LAYOUT
@@ -100,10 +96,10 @@ h3 { font-size: 1.3em; margin: 15px 0 10px 0; color: var(--primary-grad); }
 p { margin-bottom: 15px; }
 
 section {
-    padding: 80px 20px 40px;
+    padding: 120px 20px 40px; /* Mobile First: 1 column */
+    display: flex;
+    flex-direction: column;
 }
-
-/* FINAL DE SECCION DE TIPOGRAFIA Y LAYOUT */
 
 /* =========================================
    SECCION DE INICIO (SHOWCASE)
@@ -120,13 +116,11 @@ section {
 
 .hero-image {
     width: 100%;
-    max-width: 300px;
+    max-width: 100%; /* Imágenes responsivas */
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     border: 2px solid rgba(255,255,255,0.1);
 }
-
-/* FINAL DE SECCION DE INICIO (SHOWCASE) */
 
 /* =========================================
    SECCION DE LISTAS
@@ -136,10 +130,40 @@ section {
     margin-bottom: 20px;
 }
 
-.formulas-list li { margin-bottom: 5px; }
+.formulas-list li, .steps-list li { margin-bottom: 5px; }
 .formulas-list ul { margin-left: 20px; color: #aaa; font-size: 0.9em; list-style-type: circle; }
 
-/* FINAL DE SECCION DE LISTAS */
+.producto-hover {
+    cursor: pointer;
+    color: var(--primary-light);
+    font-weight: 600;
+}
+
+/* =========================================
+   SECCION HTML5 (DETAILS, FIGURE, ETC.)
+   ========================================= */
+.details-box {
+    background: rgba(255,255,255,0.05);
+    padding: 10px;
+    border-radius: 5px;
+    border-left: 4px solid var(--primary-light);
+    margin-top: 15px;
+}
+
+.details-box summary {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.figura-imagen {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.figura-imagen figcaption {
+    font-size: 0.9em;
+    color: #888;
+    margin-top: 5px;
+}
 
 /* =========================================
    SECCION MULTIMEDIA Y ASIDE
@@ -153,19 +177,17 @@ section {
 
 .video-container {
     width: 100%;
-    max-width: 100%;
+    max-width: 100%; /* Video responsivo */
     border-radius: 10px;
     overflow: hidden;
 }
-
-/* FINAL DE SECCION MULTIMEDIA Y ASIDE */
 
 /* =========================================
    SECCION DE TABLAS
    ========================================= */
 .table-responsive {
     width: 100%;
-    overflow-x: auto;
+    overflow-x: auto; /* Tablas adaptables */
 }
 
 table {
@@ -188,10 +210,8 @@ th {
     color: var(--primary-light);
 }
 
-/* FINAL DE SECCION DE TABLAS */
-
 /* =========================================
-   SECCION INTERACTIVA
+   SECCION FORMULARIO Y TARJETAS
    ========================================= */
 .cards-grid {
     display: flex;
@@ -207,15 +227,21 @@ th {
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-.card input, .card select {
+/* Formularios adaptados */
+.card input[type="text"], .card input[type="number"], .card select {
     width: 100%;
     padding: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     border-radius: 5px;
     border: 1px solid #444;
     background: #222;
     color: #fff;
     font-family: inherit;
+}
+
+.card input[type="text"]:focus, .card input[type="number"]:focus, .card select:focus {
+    outline: none;
+    border-color: var(--primary-light);
 }
 
 .result-text {
@@ -225,6 +251,11 @@ th {
     min-height: 24px;
 }
 
+.resaltado {
+    color: var(--primary-grad);
+    font-weight: bold;
+}
+
 footer {
     text-align: center;
     padding: 20px;
@@ -232,8 +263,6 @@ footer {
     font-size: 0.9em;
     color: #888;
 }
-
-/* FINAL DE SECCION INTERACTIVA */
 
 /* =========================================
    SECCION MENU HAMBURGUESA
@@ -246,6 +275,9 @@ footer {
     justify-content: space-between;
     cursor: pointer;
     z-index: 101;
+    position: absolute;
+    right: 20px;
+    top: 25px;
 }
 
 .menu-btn span {
@@ -259,11 +291,9 @@ footer {
 .menu-btn.active span:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
 }
-
 .menu-btn.active span:nth-child(2) {
     opacity: 0;
 }
-
 .menu-btn.active span:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
 }
@@ -295,14 +325,13 @@ footer {
     color: var(--primary-light);
 }
 
-/* FINAL DE SECCION MENU HAMBURGUESA */
-
 /* =========================================
    SECCION DE MEDIA QUERIES (RESPONSIVE)
    ========================================= */
 /* TABLETS (≥768px) */
 @media (min-width: 768px) {
     header.nav {
+        flex-direction: row; /* Menú horizontal */
         padding: 20px 50px;
     }
     
@@ -326,25 +355,30 @@ footer {
         display: none;
     }
 
+    /* Reorganizar con Flexbox/Grid */
     .content-section {
-        display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        gap: 30px;
     }
     
+    .content-section article {
+        flex: 1;
+    }
+    
+    .content-section .media-aside {
+        flex: 1;
+        margin-top: 0;
+    }
+
     .cards-grid {
         flex-direction: row;
-        flex-wrap: wrap;
-    }
-    
-    .card {
-        flex: 1 1 calc(50% - 20px);
     }
 }
 
 /* COMPUTERS (≥1024px) */
 @media (min-width: 1024px) {
-    h1 { font-size: 4em; }
-    h2 { font-size: 2.5em; }
+    h1 { font-size: 3.5em; }
+    h2 { font-size: 2.2em; }
 
     .showcase {
         flex-direction: row;
@@ -367,37 +401,26 @@ footer {
     }
 
     section {
-        padding: 100px;
+        padding: 120px 100px 40px;
     }
 
     .content-section {
-        flex-direction: row;
-        justify-content: space-between;
         gap: 50px;
     }
 
+    /* Sidebar visible (aside) y Distribución en columnas */
     .content-section article {
         flex: 2;
     }
 
     .content-section .media-aside {
         flex: 1;
-        margin-top: 0;
-    }
-
-    #razones article,
-    #razones .media-aside {
-        flex: 1;
-    }
-
-    .card {
-        flex: 1;
     }
 }
 
-/* LARGE PHONES (≥480px) - Tercer Media Query */
+/* LARGE PHONES (≥480px) */
 @media (min-width: 480px) {
     .hero-image {
-        max-width: 450px;
+        max-width: 350px;
     }
 }

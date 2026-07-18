@@ -1,35 +1,30 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <!-- SECCION HEAD -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trigonometría para Secundaria</title>
+    <title>Aprendiendo Álgebra</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="icon" href="img/favicon.jpg" type="image/jpeg">
     <!-- FINAL DE SECCION HEAD -->
 </head>
-
-<body>
+<body id="cuerpoPagina">
     <!-- SECCION DE NAVEGACION -->
     <header class="nav">
         <div class="logo">
-            <span class="brand">Trigono<span>metría.</span></span>
+            <span class="brand">Aprendiendo <span>Álgebra</span></span>
         </div>
         <nav class="navigation">
             <ul class="navigation-items">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#conceptos">Conceptos</a></li>
-                <li><a href="#razones">Razones</a></li>
-                <li><a href="#interaccion">Interacción</a></li>
-                <li><a href="https://es.khanacademy.org/math/trigonometry" target="_blank"
-                        rel="noopener noreferrer">Recursos Externos</a></li>
+                <li><a href="#ejercicios">Ejercicios</a></li>
+                <li><a href="https://es.khanacademy.org/math/algebra" target="_blank" rel="noopener noreferrer">Khan Academy (Externo)</a></li>
             </ul>
         </nav>
         <div class="menu-btn">
@@ -44,12 +39,15 @@
         <!-- SECCION DE INICIO -->
         <section id="inicio" class="showcase">
             <div class="text">
-                <h1>Trigonometría para Secundaria</h1>
-                <p>Descubre el fascinante mundo de los triángulos y sus propiedades de forma interactiva.</p>
-                <a href="#conceptos" class="btn-primary">Empezar a aprender</a>
+                <h1>Aprendiendo Álgebra</h1>
+                <p>El álgebra es la rama de la matemática que emplea números, letras y signos para hacer referencia a múltiples operaciones aritméticas. Se utiliza para representar cantidades desconocidas.</p>
+                <p><time datetime="2026-07-18">Última actualización: 18 de Julio de 2026</time></p>
+                <button id="cambiarColor" class="btn-primary">Cambiar Fondo (Oscuro/Claro)</button>
             </div>
             <div class="image-container">
-                    <img src="img/portada.jpg" alt="Portada de Trigonometría" class="hero-image">
+                <a href="https://es.wikipedia.org/wiki/%C3%81lgebra" target="_blank">
+                    <img src="img/portada.jpg" alt="Imagen de álgebra como enlace" class="hero-image" id="imagenAlgebra">
+                </a>
             </div>
         </section>
         <!-- FINAL DE SECCION DE INICIO -->
@@ -57,147 +55,186 @@
         <!-- SECCION DE CONCEPTOS BASICOS -->
         <section id="conceptos" class="content-section">
             <article>
-                <h2>Conceptos Básicos</h2>
-                <p>La trigonometría es una rama de las matemáticas que estudia las relaciones entre los lados y los
-                    ángulos de los triángulos, en particular los triángulos rectángulos. Estas relaciones se expresan
-                    mediante las funciones trigonométricas.</p>
+                <h2>Conceptos y Expresiones Algebraicas</h2>
+                <p>Una expresión algebraica es una combinación de <mark>letras y números</mark> ligados por los signos de las operaciones aritméticas.</p>
+                <p>Las letras representan cantidades desconocidas y se denominan <strong>variables</strong> o <strong>incógnitas</strong>.</p>
 
-                <h3>Fórmulas Importantes</h3>
+                <h3>Pasos para simplificar una expresión algebraica</h3>
+                <ol class="steps-list">
+                    <li>Eliminar paréntesis usando la propiedad distributiva.</li>
+                    <li>Agrupar términos semejantes (aquellos que tienen la misma variable).</li>
+                    <li>Sumar o restar los coeficientes de los términos semejantes.</li>
+                </ol>
+
+                <h3>Principales Productos Notables</h3>
                 <ul class="formulas-list">
-                    <li>Teorema de Pitágoras: a² + b² = c²</li>
-                    <li>Seno (sin): Cateto Opuesto / Hipotenusa
+                    <li><span id="producto1" class="producto-hover">Binomio al cuadrado</span>
                         <ul>
-                            <li>Ejemplo: En un triángulo rectángulo con cateto opuesto 3 e hipotenusa 5, sen = 3/5 = 0.6
-                            </li>
+                            <li>Ejemplo: (x + y)² = x² + 2xy + y²</li>
                         </ul>
                     </li>
-                    <li>Coseno (cos): Cateto Adyacente / Hipotenusa
+                    <li><span id="producto2" class="producto-hover">Diferencia de cuadrados</span>
                         <ul>
-                            <li>Ejemplo: Si el cateto adyacente es 4 y la hipotenusa 5, cos = 4/5 = 0.8</li>
-                        </ul>
-                    </li>
-                    <li>Tangente (tan): Cateto Opuesto / Cateto Adyacente
-                        <ul>
-                            <li>Ejemplo: tan = 3/4 = 0.75</li>
+                            <li>Ejemplo: (x - y)(x + y) = x² - y²</li>
                         </ul>
                     </li>
                 </ul>
 
-                <h3>Resolviendo un ejercicio</h3>
-                <p>Sigue esta guía paso a paso para resolver un problema típico:</p>
-                <ol class="steps-list">
-                    <li>Identifica el ángulo y los lados dados en el triángulo rectángulo.</li>
-                    <li>Determina qué lado debes calcular (hipotenusa, opuesto o adyacente).</li>
-                    <li>Elige la razón trigonométrica adecuada que relacione los lados conocidos con el desconocido.
-                    </li>
-                    <li>Despeja la incógnita y realiza el cálculo matemático.</li>
-                </ol>
+                <details class="details-box">
+                    <summary>Ver explicación del Producto Notable</summary>
+                    <p id="explicacionProducto">Selecciona un producto notable pasando el mouse sobre la lista superior.</p>
+                </details>
             </article>
 
             <aside class="media-aside">
+                <figure class="figura-imagen">
+                    <img src="img/trigo.jpg" alt="Concepto de expresiones algebraicas" style="width: 100%; border-radius: 10px;">
+                    <figcaption id="descripcionImagen">Representación visual de operaciones matemáticas.</figcaption>
+                </figure>
+
                 <div class="video-container">
-                    <iframe width="100%" height="250" src="https://www.youtube.com/embed/bBBcKPEx0N4"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen></iframe>
+                    <iframe width="100%" height="250" src="https://www.youtube.com/embed/z1bB_b4eE60" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
                 </div>
             </aside>
         </section>
-        <!-- FINAL DE SECCION DE CONCEPTOS BASICOS -->
 
-        <!-- SECCION DE TABLA DE ANGULOS NOTABLES -->
-        <section id="razones" class="content-section">
-            <article>
-                <h2>Tabla de Ángulos Notables</h2>
-                <p>Conoce los valores exactos de las funciones trigonométricas para los ángulos más comunes.</p>
+        <!-- SECCION DE TABLA -->
+        <section class="content-section">
+            <article style="width: 100%;">
+                <h2>Clasificación de Expresiones</h2>
                 <div class="table-responsive">
                     <table>
                         <thead>
                             <tr>
-                                <th>Ángulo</th>
-                                <th>Seno</th>
-                                <th>Coseno</th>
-                                <th>Tangente</th>
+                                <th>Expresión</th>
+                                <th>Tipo</th>
+                                <th>Grado</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>30°</td>
-                                <td>0.5</td>
-                                <td>0.866</td>
-                                <td>0.577</td>
-                            </tr>
-                            <tr>
-                                <td>45°</td>
-                                <td>0.707</td>
-                                <td>0.707</td>
+                                <td>3x</td>
+                                <td>Monomio</td>
                                 <td>1</td>
                             </tr>
                             <tr>
-                                <td>60°</td>
-                                <td>0.866</td>
-                                <td>0.5</td>
-                                <td>1.732</td>
+                                <td>2x² + 5</td>
+                                <td>Binomio</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>x² + 3x + 2</td>
+                                <td>Trinomio</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>5x³ - 2x² + x - 8</td>
+                                <td>Polinomio</td>
+                                <td>3</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </article>
-            
-            <aside class="media-aside">
-                <div class="image-container" style="display: flex; justify-content: center; align-items: center; height: 100%;">
-                    <a href="https://es.khanacademy.org/math/trigonometry" target="_blank" rel="noopener noreferrer" aria-label="Aprender más en Khan Academy" title="Ir a Khan Academy: Aprender más sobre trigonometría (Abre en nueva pestaña)">
-                        <img src="img/trigo.jpg" alt="Concepto de Trigonometría" style="width: 100%; max-width: 400px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.5);">
-                    </a>
-                </div>
-            </aside>
         </section>
-        <!-- FINAL DE SECCION DE TABLA DE ANGULOS NOTABLES -->
 
-        <!-- SECCION INTERACTIVA -->
-        <section id="interaccion" class="interactive-section">
-            <h2>Zona Interactiva</h2>
+        <!-- SECCION INTERACTIVA / FORMULARIO -->
+        <section id="ejercicios" class="interactive-section">
+            <h2>Registro y Evaluación de Ejercicios</h2>
+            
             <div class="cards-grid">
-                <div class="card">
-                    <h3>Evaluador de Ángulos</h3>
-                    <p>Ingresa un ángulo para saber qué tipo es.</p>
-                    <input type="number" id="input-angle" placeholder="Ej: 45">
-                    <button id="btn-angle" class="btn-primary">Verificar</button>
-                    <p id="result-angle" class="result-text"></p>
+                <!-- Tarjeta de formulario -->
+                <div class="card" style="flex: 2;">
+                    <form id="formularioEjercicio">
+                        <fieldset style="border: 1px solid rgba(255,255,255,0.2); padding: 15px; border-radius: 5px;">
+                            <legend style="padding: 0 10px; color: var(--primary-light);">Nuevo Ejercicio de Álgebra</legend>
+                            
+                            <div class="form-group">
+                                <label for="nombreEjercicio">Nombre de la expresión:</label><br>
+                                <input type="text" id="nombreEjercicio" required placeholder="Ej. Expresión A">
+                                <small id="mensajeValidacion" style="display:block; margin-bottom: 10px;"></small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="expresionValor">Grado del polinomio:</label><br>
+                                <input type="number" id="expresionValor" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="categoriaSelector">Categoría del ejercicio:</label><br>
+                                <select id="categoriaSelector">
+                                    <option value="">--Selecciona--</option>
+                                    <option value="basico">Básico</option>
+                                    <option value="intermedio">Intermedio</option>
+                                    <option value="avanzado">Avanzado</option>
+                                </select>
+                                <div style="margin-top:10px; margin-bottom: 15px;">
+                                    <label>Nivel de dificultad:</label><br>
+                                    <meter id="medidorDificultad" min="0" max="100" value="0" low="30" high="70" optimum="50" style="width:100%"></meter>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-bottom: 15px;">
+                                <p style="margin-bottom: 5px;">¿Qué tipo es?</p>
+                                <label style="margin-right:15px;"><input type="radio" name="tipoExp" value="monomio" required> Monomio</label>
+                                <label><input type="radio" name="tipoExp" value="polinomio"> Polinomio</label>
+                            </div>
+
+                            <div class="form-group" style="margin-bottom: 15px;">
+                                <label><input type="checkbox" id="revisado"> Marcar como revisado</label>
+                            </div>
+
+                            <div class="form-group" style="margin-bottom: 15px;">
+                                <label for="comentarios">Comentarios adicionales:</label><br>
+                                <textarea id="comentarios" rows="3" placeholder="Añade notas..." style="width:100%; border-radius:5px; padding:10px; background:#222; color:#fff; border:1px solid #444; font-family:inherit;"></textarea>
+                            </div>
+
+                            <div class="form-group btn-group">
+                                <button type="submit" id="btnAgregar" class="btn-primary">Agregar Ejercicio</button>
+                                <button type="reset" id="btnLimpiar" class="btn-primary" style="background: #333; color: white;">Limpiar Formulario</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                    <p id="mensajeForm" class="result-text"></p>
                 </div>
 
-                <div class="card">
-                    <h3>Explicación de Razones</h3>
-                    <p>Elige una razón trigonométrica.</p>
-                    <select id="select-reason">
-                        <option value="">Selecciona...</option>
-                        <option value="seno">Seno</option>
-                        <option value="coseno">Coseno</option>
-                        <option value="tangente">Tangente</option>
-                    </select>
-                    <button id="btn-reason" class="btn-primary">Consultar</button>
-                    <p id="result-reason" class="result-text"></p>
-                </div>
-                <div class="card">
-                    <h3>Desafío Trigonométrico</h3>
-                    <p>Pon a prueba tus conocimientos básicos.</p>
-                    <button id="btn-challenge" class="btn-primary">Iniciar Desafío</button>
-                    <p id="result-challenge" class="result-text"></p>
+                <!-- Tarjeta de Resultados e Interacciones -->
+                <div class="card" style="flex: 1;">
+                    <h3>Teclas y DOM</h3>
+                    <input type="text" id="textoPrueba" placeholder="Escribe para probar evento keyup...">
+                    <p id="teclaPresionada" style="color: var(--primary-light);">Tecla presionada: </p>
+                    
+                    <hr style="margin: 15px 0; border-color: #444;">
+                    
+                    <p id="mensajeInteractivo" style="cursor:pointer; color:var(--primary-grad); font-weight:bold;">Pasa el mouse por aquí</p>
+                    <div id="cajaResultado" style="margin-top:15px; padding:10px; background:#1a1a1a; border-radius:5px; border:1px solid #333;">
+                        Clasificación Automática
+                    </div>
+                    
+                    <button id="btnAnalizar" class="btn-primary" style="margin-top: 15px; width: 100%;">Analizar Ejercicios</button>
+
+                    <hr style="margin: 15px 0; border-color: #444;">
+
+                    <h3>Lista de Ejercicios</h3>
+                    <p style="font-size: 0.8em; color:#aaa;">(Doble clic para eliminar un elemento)</p>
+                    <ul id="listaEjercicios" class="lista-dinamica" style="padding-left:20px;">
+                    </ul>
                 </div>
             </div> <!-- Fin de cards-grid -->
 
-
+            <div style="margin-top: 30px; text-align: center;">
+                <p style="margin-bottom: 10px;">Progreso del estudiante: <progress id="progresoEstudiante" value="0" max="100"></progress></p>
+                <a href="#inicio" class="btn-primary">Regresar al inicio de la página</a>
+            </div>
         </section>
         <!-- FINAL DE SECCION INTERACTIVA -->
     </main>
 
-    <!-- SECCION DE FOOTER -->
+    <!-- FOOTER -->
     <footer>
-        <p>&copy; 2026 Trigonometría para Secundaria | Desarrollado por José Ferry</p>
+        <p>&copy; 2026 Aprendiendo Álgebra | Desarrollado para la Evaluación Continua</p>
     </footer>
-    <!-- FINAL DE SECCION DE FOOTER -->
 
     <script src="js/script.js"></script>
 </body>
-
 </html>
