@@ -83,13 +83,13 @@ mensajeInteractivo.addEventListener("mouseout", function () {
 
 // Mouseenter y Mouseleave para la imagen
 imagenAlgebra.addEventListener("mouseenter", function () {
-    this.src = "img/alg.png"; // 16.9 Cambiar dinámicamente una imagen
+    this.src = "img/algebra.jpg"; // 16.9 Cambiar dinámicamente una imagen
     this.style.transform = "scale(1.1)";
     this.style.transition = "transform 0.3s";
     descripcionImagen.textContent = "¡Explora el mundo del álgebra!";
 });
 imagenAlgebra.addEventListener("mouseleave", function () {
-    this.src = "img/algebra.jpg"; // Restaurar imagen
+    this.src = "img/alg.png"; // Restaurar imagen
     this.style.transform = "scale(1)";
     descripcionImagen.textContent = "Representación visual de operaciones matemáticas.";
 });
